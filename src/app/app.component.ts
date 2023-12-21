@@ -6,8 +6,8 @@ import { Router } from '@angular/router';
 import { LocalStorageService } from './servizi/localStorage.service';
 
 interface ApiResponse {
-  accesToken: string;
-  newRefreshToken: string;
+  token: string;
+  refreshToken: string;
 }
 @Component({
   selector: 'app-root',
@@ -34,18 +34,21 @@ export class AppComponent {
             console.log('utente non loggato');
           }
           if(error.status === 403){
-            this.http.post<ApiResponse>('http://localhost:3000/api/refresh', {token: user.refreshTokenUser}).pipe(
+            console.log('ora mando refresh');
+            let headers = new HttpHeaders().set('Authorization', `Bearer ${user.refreshTokenUser}`);
+
+            this.http.post<ApiResponse>('http://localhost:3000/api/refresh', {}, { headers: headers }).pipe(
               catchError((error: any) => {
-                console.log(error);
                 return throwError(error);
               })
             ).subscribe((response: ApiResponse) => {
               console.log(response);
               console.log("entrato nel refresh");
               user.isLoggedUser = true;
-              user.tokenUser = response.accesToken;
-              user.refreshTokenUser = response.newRefreshToken;
+              user.tokenUser = response.token;
+              user.refreshTokenUser = response.refreshToken;
               this.localStorageService.setItem('utente', JSON.stringify(user));
+              console.log(user);
               this.router.navigate(['/home']);
             });
           }
