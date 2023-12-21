@@ -1,0 +1,19 @@
+.example-container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+}
+
+span {
+  padding: 0 14px;
+  color: white;
+}
+
+.material-icons.color_white { color: white; }
+
+mat-sidenav {
+  background-color: #3f51b5;
+}

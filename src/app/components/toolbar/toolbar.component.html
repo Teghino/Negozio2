@@ -1,0 +1,20 @@
+<mat-toolbar color="primary" class="container">
+  <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)="aprichiudi()">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span>Street-wear</span>
+  <span class="medium">
+    <button mat-raised-button class="item" color="primary"> Uomo </button>
+    <button mat-raised-button class="item" color="primary"> Di tendenza </button>
+    <button mat-raised-button class="item" color="primary"> Donna </button>
+  </span>
+  <span class="example-spacer"></span>
+  <div *ngIf="!isLogged">
+    <button mat-button routerLink="login"> Accedi </button>
+    <button mat-button routerLink=""> Registrati </button>
+  </div>
+  <div mat-button *ngIf="isLogged" class="user-info">
+    {{user.nameUser}}
+    <img id="imm" src="assets/img/noImmagine.jpg" alt="lol" class="profile-image">
+  </div>
+</mat-toolbar>

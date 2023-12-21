@@ -1,0 +1,47 @@
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.medium{
+  position: absolute;
+  left: 50%;
+  width: 25%;
+  transform: translate(-50%, 0);
+  display: flex;
+  justify-content: space-between;
+}
+
+.item{
+  font-size: 90%;
+}
+
+.container{
+  position: relative;
+}
+
+.button-container {
+  margin-top: 20px;
+}
+
+mat-toolbar{
+  position: relative;
+  box-shadow: black 0px 0px 10px;
+  z-index: 10000000;
+}
+
+.profile-image {
+  width: 40px; /* Imposta la larghezza dell'immagine */
+  height: 40px; /* Imposta l'altezza dell'immagine */
+  border-radius: 50%; /* Rende l'immagine rotonda */
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+}
+
+#imm{
+  padding-left: 10px;
+  padding-right: 10px;
+}
+

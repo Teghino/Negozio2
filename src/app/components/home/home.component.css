@@ -1,0 +1,30 @@
+body{
+  position: relative;
+}
+
+.img{
+  width: 100%;
+  opacity: 0;
+  z-index: -1;
+  
+}
+
+.sotto{
+  padding: 2%;
+  opacity: 0;
+}
+
+.container{
+  width: 100%;
+  height: 100%;
+}
+
+#migliori{
+  position: absolute;
+  top: 3%;
+  left: 50%;
+  transform: translate(-50%, 0);
+  padding: 2%;
+  border-radius: 10px;
+  opacity: 0;
+}

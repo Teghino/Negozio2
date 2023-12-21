@@ -1,0 +1,67 @@
+<div class="container">
+  <p style="font-size: 40px; color: #3f51b5;">Registrati</p>
+  <mat-stepper orientation="vertical" linear='true' #stepper class="step">
+    <mat-step [stepControl]="firstFormGroup">
+      <form [formGroup]="firstFormGroup" #formone="ngForm" >
+        <ng-template matStepLabel>Inserisci il nome</ng-template>
+        <mat-form-field>
+          <mat-label>Name</mat-label>
+          <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup">
+      <form [formGroup]="secondFormGroup" #formtwo="ngForm" (ngSubmit)="onSubmitUser()">
+        <ng-template matStepLabel>Inserisci l'email</ng-template>
+        <mat-form-field>
+          <mat-label>Email</mat-label>
+          <input matInput type="email" formControlName="secondCtrl" placeholder="Ex. mario@gmail.com" required>
+          <mat-error *ngIf="secondFormGroup?.get('secondCtrl')?.hasError('notExists')">email già in uso</mat-error>
+          <mat-error *ngIf="secondFormGroup?.get('secondCtrl')?.invalid && (secondFormGroup?.get('secondCtrl')?.dirty || secondFormGroup?.get('secondCtrl')?.touched) && !secondFormGroup?.get('secondCtrl')?.hasError('notExists')"> inserisci un'email valida </mat-error>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="thirdFormGroup">
+      <form [formGroup]="thirdFormGroup" #formthree="ngForm">
+        <ng-template matStepLabel>Inserisci la password</ng-template>
+        <mat-form-field>
+          <mat-label>Password</mat-label>
+          <input matInput formControlName="thirdCtrl" placeholder="Password" required>
+          <mat-error *ngIf="thirdFormGroup?.get('thirdCtrl')?.hasError('passwordInvalid')">
+            La password deve avere almeno 6 caratteri, una maiuscola e un numero.
+          </mat-error>
+        </mat-form-field>
+        <div class="c"> ciao </div>
+        <div class="button-container" *ngIf="!thirdFormGroup?.get('thirdCtrl')?.hasError('passwordInvalid') && thirdFormGroup?.get('thirdCtrl')?.dirty">
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step>
+      <form [formGroup]="mainForm" (ngSubmit)="onSubmit()">
+      <ng-template matStepLabel>Done</ng-template>
+      <p>Completato</p>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button (click)="stepper.reset()">Reset</button>
+        <button mat-button type="submit">
+          submit
+        </button>
+      </div>
+    </form>
+    </mat-step>
+  </mat-stepper>
+  <div class="button-container">
+    <button mat-button routerLink="login">Hai già un account? Accedi</button>
+  </div>
+  </div>
+
+

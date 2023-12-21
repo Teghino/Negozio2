@@ -1,0 +1,20 @@
+<mat-sidenav-container class="example-container">
+  <mat-sidenav #sidenav mode="side" closed> <!-- opened --> <!-- closed -->
+    <mat-nav-list class="box">
+      <mat-list-item disabled></mat-list-item>
+        <mat-list-item *ngFor="let elemento of elementi; let i = index" routerLink="{{routeLinks[i]}}">
+          <mat-icon class="material-icons color_white" aria-hidden="false" aria-label="Example home icon" fontIcon="{{icone[i]}}"></mat-icon>
+          <span> {{elemento}} </span>
+        </mat-list-item>
+        <mat-list-item>
+          <mat-icon class="material-icons color_white" aria-hidden="false" aria-label="Example home icon">exit_to_app</mat-icon>
+          <span (click)="logOut()"> Log-out </span>
+        </mat-list-item>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <app-toolbar [sidenav]="sidenav"></app-toolbar>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+

@@ -1,0 +1,12 @@
+/* You can add global styles to this file, and also import other style files */
+@font-face {
+  font-family: sciuttiMuori;
+  src: url(src\app\Montserrat-SemiBold.ttf);
+}
+
+*{
+  font-family: 'sciuttiMuori', sans-serif;
+}
+
+html, body { height: 100%; }
+body { margin: 0}
