@@ -22,12 +22,11 @@ export class AppComponent {
     const utenteString = localStorage.getItem('utente');
     if (utenteString) {
       const utente = JSON.parse(utenteString);
-      const user = new Users(utente.name, utente.token, utente.refreshToken, utente.date, false);
+      const user = new Users(utente.name, false);
       localStorage.setItem('utente', JSON.stringify(user));
-      const headers = new HttpHeaders().set('Authorization', `Bearer ${user.tokenUser}`);
       this.http.post('http://localhost:3000/api/token',
         {},
-        { headers }
+        {withCredentials: true}
       ).pipe(
         catchError((error: any) => {
           if(error.status === 401){
@@ -35,9 +34,9 @@ export class AppComponent {
           }
           if(error.status === 403){
             console.log('ora mando refresh');
-            let headers = new HttpHeaders().set('Authorization', `Bearer ${user.refreshTokenUser}`);
-
-            this.http.post<ApiResponse>('http://localhost:3000/api/refresh', {}, { headers: headers }).pipe(
+          
+            this.http.post<ApiResponse>('http://localhost:3000/api/refresh', {}, { })
+            .pipe(
               catchError((error: any) => {
                 return throwError(error);
               })
@@ -45,8 +44,6 @@ export class AppComponent {
               console.log(response);
               console.log("entrato nel refresh");
               user.isLoggedUser = true;
-              user.tokenUser = response.token;
-              user.refreshTokenUser = response.refreshToken;
               this.localStorageService.setItem('utente', JSON.stringify(user));
               console.log(user);
               this.router.navigate(['/home']);

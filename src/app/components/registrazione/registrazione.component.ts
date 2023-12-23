@@ -109,7 +109,8 @@ export class RegistrazioneComponent {
     })
   ).subscribe((response: ApiResponse) => {
       console.log(response.success);
-      let utente = new Users(nome, response.accessToken, response.refreshToken, new Date(), true);
+      let utente = new Users(nome, true);
+      
       this.localStorageService.setItem('utente', JSON.stringify(utente));
       this.router.navigate(['/home']);
     });

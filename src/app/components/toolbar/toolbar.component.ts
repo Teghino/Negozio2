@@ -26,7 +26,7 @@ export class ToolbarComponent implements OnInit, OnDestroy{
 
   constructor(private location: Location, private localStorageService: LocalStorageService) {
     const utente = JSON.parse(localStorage.getItem('utente') || '{}');
-    this.user = new Users(utente.name, utente.token, utente.refreshToken, utente.date, utente.isLogged);
+    this.user = new Users(utente.name, utente.isLogged);
     this.isLogged = this.user.getIsLoggedUser;
     this.updateUserFromLocalStorage();
   }
@@ -45,7 +45,7 @@ export class ToolbarComponent implements OnInit, OnDestroy{
 
   updateUserFromLocalStorage(): void {
     const utente = JSON.parse(localStorage.getItem('utente') || '{}');
-    this.user = new Users(utente.name, utente.token, utente.refreshToken, utente.date, utente.isLogged);
+    this.user = new Users(utente.name, utente.isLogged);
     this.isLogged = this.user.getIsLoggedUser;
   }
   

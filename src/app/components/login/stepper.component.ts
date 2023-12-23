@@ -82,7 +82,7 @@ export class StepperVerticalExample{
           }
         }
       }else{
-        let user = new Users(response.nome, response.accessToken, response.refreshToken, new Date(), true);
+        let user = new Users(response.nome, true);
         this.localStorageService.setItem('utente', JSON.stringify(user));
         this.router.navigate(['/home'])
       }

@@ -45,3 +45,8 @@ mat-toolbar{
   padding-right: 10px;
 }
 
+@media(max-width: 1250px){
+  .medium{
+    width: 35%;
+  }
+}
